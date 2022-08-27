@@ -1,0 +1,94 @@
+{% extends "base.html"%}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page">Beginner</li>
+        </ol>
+      </nav>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="{{url_for('video', id='1a')}}" class="btn btn-primary">Try this training</a>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="{{url_for('video', id='1b')}}" class="btn btn-primary">Try this training</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page">Intermediate</li>
+        </ol>
+      </nav>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="{{url_for('video', id='2a')}}" class="btn btn-primary">Try this training</a>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="{{url_for('video', id='2b')}}" class="btn btn-primary">Try this training</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page">Advanced</li>
+        </ol>
+      </nav>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="{{url_for('video', id='3a')}}" class="btn btn-primary">Try this training</a>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="{{url_for('video', id='3b')}}" class="btn btn-primary">Try this training</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

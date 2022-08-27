@@ -1,0 +1,8 @@
+{% extends "base.html"%}
+{% block content %}
+<div class="d-flex mt-2 justify-content-center">
+  <a href="{{url_for('training', id = id)}}">
+    <button type="button" class="btn btn-outline-dark">I'm Ready!</button>
+  </a>
+</div>
+{% endblock %}

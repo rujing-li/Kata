@@ -5,9 +5,17 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/training')
-def training():
-    return render_template('training.html')
+@app.route('/start')
+def start():
+    return render_template('start.html')
+
+@app.route('/videos/<id>')
+def video(id):
+    return render_template('video.html', id = id)
+
+@app.route('/trainings/<id>')
+def training(id):
+    return render_template('training.html', id = id)
 
 @app.route('/info')
 def info():
