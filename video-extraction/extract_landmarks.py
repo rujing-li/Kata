@@ -17,7 +17,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
 #define video here
-video = '3c.mp4'
+video = 'karate-girl.mp4'
 video_path = 'videos/' + video
 
 #video feed
@@ -97,7 +97,7 @@ def convert_frames_to_gif(frames, output_gif):
 	imageio.mimsave(output_path + output_gif + '.gif', images)
 
 #converts keypoints dictionary to a json file
-# with open(output_path + video + '-keypoints.json', 'w') as fp:
-#     json.dump(keypoints, fp)
+with open(output_path + video + '-keypoints.json', 'w') as fp:
+    json.dump(keypoints, fp)
 
-convert_frames_to_gif(annotated_frames, video)
+#convert_frames_to_gif(annotated_frames, video)

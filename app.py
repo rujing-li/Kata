@@ -17,7 +17,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
 # initialize variables
-tutorial_name = 'karate-girl-2.mp4-keypoints'
+tutorial_name = 'karate-girl.mp4-keypoints'
 
 # citing: from HTN's smart dance project
 
