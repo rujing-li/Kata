@@ -17,7 +17,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
 #define video here
-video = 'karate-girl.mp4'
+video = 'karate-girl-2.mp4'
 video_path = 'videos/' + video
 
 #video feed
@@ -45,7 +45,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
 
         #detect stuff and render
         #recolour image to RGB
-        image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        image = cv2.cvtColor(cv2.flip(frame, 1), cv2.COLOR_BGR2RGB)
         image.flags.writeable = False
 
         #make detection

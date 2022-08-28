@@ -17,7 +17,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
 # initialize variables
-tutorial_name = 'karate-girl.mp4-keypoints'
+tutorial_name = 'karate-girl-2.mp4-keypoints'
 
 # citing: from HTN's smart dance project
 
@@ -71,8 +71,8 @@ def connect_points(points, translation_factors, image, image_shape, scale):
 
 def get_translation_factor(gt, person, h, w):
 
-    x_gt, y_gt = gt['9'][0]*w, gt['9'][1]*h
-    x_person, y_person = person[9][0]*w, person[9][1]*h
+    x_gt, y_gt = gt['7'][0]*w, gt['7'][1]*h
+    x_person, y_person = person[7][0]*w, person[7][1]*h
 
     if x_person >= x_gt:
         return x_person - x_gt, y_person - y_gt
@@ -96,8 +96,9 @@ def compare_keypoints(actual_keypoints, user_keypoints, w, h, translation_factor
     # metric compares using x and y data
     for i in range(len(actual_keypoints)):
         actual_keypoints_array.append(np.array(actual_keypoints[str(i)])[
-                                      0:2] * np.array([w, h]) - np.array(list(translation_factors)))
-    user_keypoints_array.append(np.array(user_keypoints[i])[
+                                      0:2] * np.array([w, h]))
+                                      #- np.array(list(translation_factors)))
+        user_keypoints_array.append(np.array(user_keypoints[i])[
                                 0:2] * np.array([w, h]))
 
     # creating a single array
@@ -196,13 +197,12 @@ def create_tutorial_landmark():
                     image.flags.writeable = True
                     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-                    # render detections
-                    mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
-                                                  landmark_drawing_spec=mp_drawing_styles.get_default_pose_landmarks_style())
+                    #render detections
+                    mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,landmark_drawing_spec=mp_drawing_styles.get_default_pose_landmarks_style())
 
                     ######      COMPARING VISUALIZATION OF TUTORIAL LANDMARKS TO USER LANDMARKS      #####
 
-                    comparisons = connect_points(tutorial_data[counter], (x_t, y_t), copy_image, (h, w), scale=1.7)
+                    comparisons = connect_points(tutorial_data[counter], (x_t, y_t), copy_image, (h, w), scale=1.0)
                     comparisons = cv2.cvtColor(comparisons, cv2.COLOR_RGB2BGR)
                     comparisons = connect_points(pose_landmarks_str_keys, (0, 0), comparisons, (h, w), scale=1.0)
                     points = compare_keypoints(tutorial_data[counter], pose_landmarks, w, h, (x_t, y_t))
