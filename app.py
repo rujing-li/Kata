@@ -19,9 +19,7 @@ mp_pose = mp.solutions.pose
 # initialize variables
 tutorial_name = 'karate-girl.mp4-keypoints'
 
-# citing: from HTN's smart dance project
-
-
+# citing: this function is from HTN's mediapipe smart dance
 def connect_points(points, translation_factors, image, image_shape, scale):
     h, w = image_shape
     points_connect_dict = {
@@ -67,8 +65,6 @@ def connect_points(points, translation_factors, image, image_shape, scale):
     return image
 
 # citing: from HTN's smart dance project
-
-
 def get_translation_factor(gt, person, h, w):
 
     x_gt, y_gt = gt['7'][0]*w, gt['7'][1]*h
@@ -79,12 +75,11 @@ def get_translation_factor(gt, person, h, w):
     elif x_person <= x_gt:
         return x_gt - x_person, y_gt - y_person
 
-
+# because numpy > spicy
 def l2_norm(actual_landmarks, user_landmarks):
     return np.linalg.norm(actual_landmarks - user_landmarks)
 
 # compare landmarks between the user's pose (from webcam) and the actual video (from self defense tutorial)
-
 
 def compare_keypoints(actual_keypoints, user_keypoints, w, h, translation_factors):
 
@@ -97,21 +92,16 @@ def compare_keypoints(actual_keypoints, user_keypoints, w, h, translation_factor
     for i in range(len(actual_keypoints)):
         actual_keypoints_array.append(np.array(actual_keypoints[str(i)])[
                                       0:2] * np.array([w, h]))
-                                      #- np.array(list(translation_factors)))
         user_keypoints_array.append(np.array(user_keypoints[i])[
                                 0:2] * np.array([w, h]))
 
-    # creating a single array
+    # create a single array
+    # why does np.tile not work??
     actual_keypoints_array = np.vstack(actual_keypoints_array)
     user_keypoints_array = np.vstack(user_keypoints_array)
 
     return l2_norm(actual_keypoints_array, user_keypoints_array)
 
-
-def put_text(image, text, h, w):
-    image = cv2.putText(img=image, org=(w - 700, 50), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0, 0, 0), text=text,
-                        thickness=3)
-    return image
 
 # create tutorial landmarks for user to follow along
 
@@ -129,9 +119,9 @@ def create_tutorial_landmark():
 
     # min, max, and update counters
     counter_update = 1
-    max_counter = 161
+    max_counter = 160   #180 too flat so 160 recommended
 
-    while True and counter_update <= (max_counter-1):
+    while True and counter_update <= max_counter:
 
         counter_update += 1
         ret, image = cap.read()
@@ -145,9 +135,9 @@ def create_tutorial_landmark():
             h, w, _ = image.shape
 
             # visualize video
-            image = cv2.putText(img=image, org=(w//2, h//2),
-                                fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0, 0, 0),
-                                text=str((max_counter - counter_update)//40), thickness=2)
+            image = cv2.putText(image, (w//2, h//2),
+                                cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0),
+                                str((max_counter - counter_update)//40), 2)
 
             # convert back to bgr
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
@@ -213,7 +203,7 @@ def create_tutorial_landmark():
                     else:
                         avg.append(points)
 
-                    comparisons = put_text(
+                    comparisons = putText(
                             comparisons, "Score :" + str(round(sum(avg)/len(avg), 2)), h, w)
                     ret, buffer = cv2.imencode('.jpg', comparisons)
                     image = buffer.tobytes()
