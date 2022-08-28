@@ -25,7 +25,7 @@ cap = cv2.VideoCapture(video_path)
 
 #variables and counters
 index = 0
-temp_path = 'temp/annotated_image'
+temp_path = 'temp/'
 output_path = 'output/'
 annotated_frames = []
 keypoints = []
@@ -97,7 +97,7 @@ def convert_frames_to_gif(frames, output_gif):
 	imageio.mimsave(output_path + output_gif + '.gif', images)
 
 #converts keypoints dictionary to a json file
-with open(output_path + video + '-keypoints.json', 'w') as fp:
-    json.dump(keypoints, fp)
+# with open(output_path + video + '-keypoints.json', 'w') as fp:
+#     json.dump(keypoints, fp)
 
-#convert_frames_to_gif(annotated_frames, video)
+convert_frames_to_gif(annotated_frames, video)
