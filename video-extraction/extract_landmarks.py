@@ -17,7 +17,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
 #define video here
-video = 'karate-girl.mp4'
+video = 'karate-girl-2.mp4'
 video_path = 'videos/' + video
 
 #video feed
@@ -25,7 +25,7 @@ cap = cv2.VideoCapture(video_path)
 
 #variables and counters
 index = 0
-temp_path = 'temp/annotated_image'
+temp_path = 'temp/'
 output_path = 'output/'
 annotated_frames = []
 keypoints = []
@@ -45,7 +45,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
 
         #detect stuff and render
         #recolour image to RGB
-        image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        image = cv2.cvtColor(cv2.flip(frame, 1), cv2.COLOR_BGR2RGB)
         image.flags.writeable = False
 
         #make detection
@@ -97,7 +97,7 @@ def convert_frames_to_gif(frames, output_gif):
 	imageio.mimsave(output_path + output_gif + '.gif', images)
 
 #converts keypoints dictionary to a json file
-with open(output_path + video + '-keypoints.json', 'w') as fp:
-    json.dump(keypoints, fp)
+# with open(output_path + video + '-keypoints.json', 'w') as fp:
+#     json.dump(keypoints, fp)
 
-#convert_frames_to_gif(annotated_frames, video)
+convert_frames_to_gif(annotated_frames, video)
