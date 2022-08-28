@@ -17,7 +17,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
 #define video here
-video = 'karate-girl-2.mp4'
+video = '3c.mp4'
 video_path = 'videos/' + video
 
 #video feed
